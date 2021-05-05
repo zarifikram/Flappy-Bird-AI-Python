@@ -46,7 +46,8 @@ class main():
         self.screen.blit(self.bird.sprite, (self.bird.x, self.bird.y))
         for index, bird in enumerate(self.birds):
             bird.move()
-            if(bird)
+            self.screen.blit(bird.sprite, (bird.x, bird.y))
+            
 
 
     def pipe_progress(self):
@@ -94,14 +95,16 @@ class main():
                     self.score_check()
                         # do things
                 # add more event keys as you wish
+            if len(self.birds) == 0:
+                break
             self.screen.blit(self.bg, (0,0))
-            self.is_active = not self.is_collided()
+            self.is_collided()
             # if self.is_collided():
             #     print("Noooo")
-            if self.is_active:
-                self.bird_progress()
-                self.pipe_progress()
-                # self.score_check()
+            # if self.is_active:
+            self.bird_progress()
+            self.pipe_progress()
+            # self.score_check()
             # else:
                 # print(self.score.hival)
             self.draw_floor()
@@ -110,8 +113,8 @@ class main():
 
     def is_collided(self):
         for index, bird in enumerate(self.birds):
-            if bird.rect.centery >= self.height:
-                self.ge[x] -= 1
+            if bird.rect.centery >= self.height or bird.rect.center < 0:
+                self.ge[index] -= 1
                 self.birds.pop(index)
                 self.nets.pop(index)
                 self.ge.pop(index)
@@ -119,7 +122,7 @@ class main():
         for pipe in self.pipe.all:
             for index, bird in enumerate(self.birds):
                 if bird.rect.colliderect(pipe):
-                    self.ge[x] -= 1
+                    self.ge[index] -= 1
                     self.birds.pop(index)
                     self.nets.pop(index)
                     self.ge.pop(index)
