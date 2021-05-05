@@ -1,7 +1,7 @@
 import pygame 
 import sys
 import random
-from scores import Score
+from score import Score
 
 class Bird():
     def __init__(self):
@@ -12,6 +12,7 @@ class Bird():
         self.vx = 10 
         self.vy = 0
         self.gravity = 0.25
+        # print(1111111111)
         self.sprite = pygame.image.load("assets/bluebird-downflap.png").convert()
         self.rect = self.sprite.get_rect(center = (self.x, self.y))
         self.score = Score()

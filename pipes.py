@@ -10,22 +10,24 @@ class Pipes():
         self.vx = 3
         pygame.time.set_timer(self.SPAWN, 1200)
         self.thisindex = 0
-        
+        # print("creating pipes")
 
     def generate(self):
         randompipe = random.randrange(112, 400)
         bottom = self.sprite.get_rect(midtop = (self.defaultx, randompipe))
         top = self.sprite.get_rect(midbottom = (self.defaultx, randompipe - self.distance))
         self.all.append([bottom, top])
+        # print("generating pipes")
 
     def move(self):
         for pipe in self.all:
-            pipe.centerx -= self.vx
+            pipe[0].centerx -= self.vx
+            pipe[1].centerx -= self.vx
         
-        visible_pipes = [pipe for pipe in self.all if pipe.right > -25]
+        visible_pipes = [pipe for pipe in self.all if pipe[0].right > -25]
         self.all = visible_pipes
         for index, pipe in enumerate(self.all):
-            if pipe.right < 130:
+            if pipe[0].right < 130:
                 self.thisindex = index
                 break
 
