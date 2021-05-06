@@ -53,6 +53,7 @@ def main(genomes, config):
     score = 0
     run = True
     clock = pygame.time.Clock()
+    jumped = True
     while run:
         clock.tick(30)
         for event in pygame.event.get():
@@ -72,10 +73,10 @@ def main(genomes, config):
         for bird in birds:
             ge[birds.index(bird)].fitness += 0.1
             bird.move()
-
+            
             output = nnets[birds.index(bird)].activate((bird.y, abs(
                 bird.y - pipes[pipe_index].height), abs(bird.y - pipes[pipe_index].bottom)))
-            if output[0] > 0.5:
+            if output[0] > 0.75:
                 bird.jump()
 
         base.move()

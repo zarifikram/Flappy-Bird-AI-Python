@@ -1,7 +1,6 @@
 import pygame 
 import sys
 import random
-from score import Score
 
 class Bird():
     MAX_ROTATION = 25
@@ -14,34 +13,31 @@ class Bird():
         self.y = y
         self.jumpy = self.y
         self.tilt = 0
-        self.tilt_count = 0
         self.tick_count = 0
         self.img_count = 0
-        self.low = 440
-        self.high = 0
+     
         self.vx = 10 
         self.vy = 0
-        self.gravity = 3
+        self.gravity = 1
         # print(1111111111)
-        self.sprite = pygame.image.load("assets/bluebird-downflap.png").convert()
         self.rect = self.img.get_rect(topleft=(self.x, self.y))
 
-        self.score = Score()
-
     def jump(self):
-        self.vy = -7
+        self.vy = -10.5
         self.tick_count = 0
         self.jumpy = self.y
 
     def move(self):
         self.tick_count += 1
         # self.tilt_count += 1
-        d = self.vy*self.tick_count + 0.5*self.gravity*self.tick_count**2
+        self.vy += self.gravity
+        d = self.vy
+        # d = self.vy*self.tick_count + 0.5*self.gravity*self.tick_count**2
         if d >= 16:
             d = 16
         
         if d < 0:
-            d -= 2
+            d -= 5
 
         self.y += d
 

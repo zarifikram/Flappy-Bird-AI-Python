@@ -1,7 +1,7 @@
-import pygame 
+import pygame
 import sys
 import random
-from score import Score
+
 
 class Base:
     VX = 5
@@ -12,13 +12,13 @@ class Base:
         self.y = y
         self.x1 = 0
         self.x2 = self.WIDTH
-        
+
     def move(self):
         self.x1 -= self.VX
         self.x2 -= self.VX
         if self.x1 + self.WIDTH <= 0:
             self.x1 += self.WIDTH
-            self.x2 += self.WIDTH 
+            self.x2 += self.WIDTH
 
     def draw(self, win):
         win.blit(self.img, (self.x1, self.y))
